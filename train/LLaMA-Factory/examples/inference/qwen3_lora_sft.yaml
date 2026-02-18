@@ -1,0 +1,6 @@
+model_name_or_path: /data/zyx/models/Qwen3-8B
+adapter_name_or_path: saves/sc2_wm/small/baseline/Qwen3-8B/lora/train_small_baseline_1225
+template: qwen3
+enable_thinking: False
+infer_backend: huggingface  # choices: [huggingface, vllm, sglang, ktransformers]
+trust_remote_code: true

@@ -1,0 +1,63 @@
+Metric                                   | Our World Model      | Qwen3-32B            | Qwen3-8B             | Static Bias         
+------------------------------------------------------------------------------------------------------------------------------------
+
+[ Macro-Dynamics Consistency ]
+Self Unit AWD                            | 5.96                 | 13.44                 | 14.41                 | 13.89                
+Self Struct AWD                          | 0.96                 | 6.15                 | 7.32                 | 2.84                
+Enemy Unit AWD                           | 30.94                 | 27.75                 | 28.34                 | 27.23                
+Enemy Struct AWD                         | 15.17                 | 15.22                 | 15.73                 | 14.09                
+Snap Enemy Struct AWD                    | 8.16                 | 10.36                 | 9.20                 | 7.07                
+
+[ Global Economy & Status ]
+Minerals SMAPE                           | 0.19                 | 0.48                 | 0.49                 | 0.49                
+Minerals Rate SMAPE                      | 0.09                 | 0.73                 | 0.37                 | 0.12                
+Gas SMAPE                                | 0.09                 | 0.26                 | 0.27                 | 0.25                
+Gas Rate SMAPE                           | 0.12                 | 0.58                 | 0.34                 | 0.12                
+Supply Used SMAPE                        | 0.02                 | 0.21                 | 0.04                 | 0.04                
+Supply Cap SMAPE                         | 0.01                 | 0.20                 | 0.03                 | 0.02                
+Alerts F1                                | 0.00                 | 0.02                 | 0.02                 | 0.02                
+Upgrades F1                              | 1.00                 | 0.98                 | 0.98                 | 0.98                
+Workers num SMAPE                        | 0.02                 | 0.07                 | 0.04                 | 0.03                
+
+[ Development ]
+Queue F1                                 | 0.92                 | 0.70                 | 0.73                 | 0.80                
+Progress MAE                             | 0.43                 | 24.27                 | 27.07                 | 24.81                
+
+[ Micro-Unit Attributes ]
+Self Unit F1 (Micro_avg)                 | 0.97                 | 0.91                 | 0.89                 | 0.91                
+Self Unit Prec (Micro_avg)               | 0.96                 | 0.90                 | 0.91                 | 0.92                
+Self Unit Recall (Micro_avg)             | 0.98                 | 0.93                 | 0.86                 | 0.90                
+Self Unit F1                             | 0.94                 | 0.87                 | 0.85                 | 0.85                
+Self Unit Prec                           | 0.94                 | 0.87                 | 0.86                 | 0.86                
+Self Unit Recall                         | 0.96                 | 0.91                 | 0.86                 | 0.85                
+Self Struct F1 (Micro_avg)               | 0.99                 | 0.96                 | 0.94                 | 0.98                
+Self Struct Prec (Micro_avg)             | 0.99                 | 0.96                 | 0.96                 | 0.98                
+Self Struct Recall (Micro_avg)           | 0.99                 | 0.96                 | 0.92                 | 0.98                
+Self Struct F1                           | 0.99                 | 0.93                 | 0.92                 | 0.97                
+Self Struct Prec                         | 0.99                 | 0.92                 | 0.91                 | 0.98                
+Self Struct Recall                       | 0.99                 | 0.96                 | 0.94                 | 0.96                
+Enemy Unit F1 (Micro_avg)                | 0.62                 | 0.71                 | 0.70                 | 0.71                
+Enemy Unit Prec (Micro_avg)              | 0.58                 | 0.72                 | 0.72                 | 0.72                
+Enemy Unit Recall (Micro_avg)            | 0.67                 | 0.69                 | 0.69                 | 0.71                
+Enemy Unit F1                            | 0.65                 | 0.69                 | 0.69                 | 0.70                
+Enemy Unit Prec                          | 0.68                 | 0.73                 | 0.72                 | 0.74                
+Enemy Unit Recall                        | 0.68                 | 0.72                 | 0.72                 | 0.73                
+Enemy Struct F1 (Micro_avg)              | 0.79                 | 0.79                 | 0.77                 | 0.82                
+Enemy Struct Prec (Micro_avg)            | 0.80                 | 0.81                 | 0.81                 | 0.82                
+Enemy Struct Recall (Micro_avg)          | 0.78                 | 0.76                 | 0.73                 | 0.81                
+Enemy Struct F1                          | 0.83                 | 0.83                 | 0.83                 | 0.84                
+Enemy Struct Prec                        | 0.84                 | 0.84                 | 0.84                 | 0.85                
+Enemy Struct Recall                      | 0.84                 | 0.84                 | 0.83                 | 0.85                
+Snap Enemy Struct F1 (Micro_avg)         | 0.94                 | 0.92                 | 0.94                 | 0.95                
+Snap Enemy Struct Prec (Micro_avg)       | 0.95                 | 0.96                 | 0.96                 | 0.96                
+Snap Enemy Struct Recall (Micro_avg)     | 0.94                 | 0.89                 | 0.92                 | 0.95                
+Snap Enemy Struct F1                     | 0.91                 | 0.88                 | 0.90                 | 0.92                
+Snap Enemy Struct Prec                   | 0.92                 | 0.90                 | 0.91                 | 0.93                
+Snap Enemy Struct Recall                 | 0.91                 | 0.89                 | 0.90                 | 0.93                
+Self Unit HP MAE                         | 4.15                 | 5.11                 | 5.62                 | 4.81                
+Self Unit Energy MAE                     | 1.47                 | 4.81                 | 3.89                 | 3.49                
+Self Struct HP MAE                       | 0.65                 | 0.63                 | 0.66                 | 0.61                
+Self Struct Energy MAE                   | 0.07                 | 3.42                 | 4.71                 | 3.33                
+Enemy Unit HP MAE                        | 7.90                 | 8.47                 | 9.01                 | 9.15                
+Enemy Unit Energy MAE                    | 2.54                 | 2.59                 | 2.61                 | 2.58                
+Enemy Struct HP MAE                      | 2.91                 | 4.40                 | 4.51                 | 4.85                

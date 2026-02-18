@@ -1,0 +1,41 @@
+{
+  "sc2_dynamics_50k_train": {
+    "file_name": "SC2-Dynamics-50K/wm_train_horizon5.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "sc2_dynamics_50k_val": {
+    "file_name": "SC2-Dynamics-50K/wm_val_horizon5.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "sc2_dynamics_50k_test": {
+    "file_name": "SC2-Dynamics-50K/wm_test_horizon5.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  }
+}
