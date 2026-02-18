@@ -1,8 +1,8 @@
 # World Models for Policy Refinement in StarCraft II
 
-[📄 Paper (arXiv)](https://arxiv.org/abs/2602.14857)  
-[🤗 Pretrained Model](https://huggingface.co/yxzhang2024/StarWM)  
-[📊 SC2-Dynamics-50K Dataset](https://huggingface.co/datasets/yxzhang2024/SC2-Dynamics-50K)
+<p align="center">
+  📄 <a href="https://arxiv.org/abs/2602.14857">Paper (arXiv)</a> • 🤗 <a href="https://huggingface.co/yxzhang2024/StarWM">Pretrained Model</a> • 📊 <a href="https://huggingface.co/datasets/yxzhang2024/SC2-Dynamics-50K">SC2-Dynamics-50K Dataset</a>
+</p>
 
 > This repository contains the official implementation of the paper **World Models for Policy Refinement in StarCraft II**.
 
@@ -25,7 +25,7 @@ Given the current observation and a sequence of actions, StarWM predicts structu
 It is further integrated into a world-model-augmented decision system (**StarWM-Agent**) to enable short-horizon predictive simulation and inference-time policy refinement.
 
 <p align="center">
-  <img src="assets/figure1.png" width="800">
+  <img src="assets/fig.png" width="800">
 </p>
 
 To address dynamics modeling and decision integration in this hybrid and partially observable environment, we:
@@ -43,7 +43,7 @@ To address dynamics modeling and decision integration in this hybrid and partial
 ### 🚀 Offline Evaluation Results
 
 <p align="center">
-  <img src="assets/figure2.png" width="800">
+  <img src="assets/fig.png" width="800">
 </p>
 
 - 🟢 **60% reduction** in minerals prediction error (SMAPE)
@@ -65,7 +65,7 @@ This enables:
 #### 🚀 Online Decision-Making Performance
 
 <p align="center">
-  <img src="assets/figure3.png" width="800">
+  <img src="assets/fig3.png" width="800">
 </p>
 
 - +30% / +15% / +30% win-rate gains against SC2's Hard / Harder / VeryHard built-in AI
