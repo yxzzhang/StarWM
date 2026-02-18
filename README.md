@@ -1,7 +1,7 @@
 # World Models for Policy Refinement in StarCraft II
 
 <p align="center">
-  📄 <a href="https://arxiv.org/abs/2602.14857">Paper (arXiv)</a> • 🤗 <a href="https://huggingface.co/yxzhang2024/StarWM">Pretrained Model</a> • 📊 <a href="https://huggingface.co/datasets/yxzhang2024/SC2-Dynamics-50K">SC2-Dynamics-50K Dataset</a>
+  📄 <a href="https://arxiv.org/abs/2602.14857">Paper (arXiv)</a> • 🤗 <a href="https://huggingface.co/yxzhang2024/StarWM">StarWM Model</a> • 📂 <a href="https://huggingface.co/datasets/yxzhang2024/SC2-Dynamics-50K">SC2-Dynamics-50K Dataset</a>
 </p>
 
 > This repository contains the official implementation of the paper **World Models for Policy Refinement in StarCraft II**.
@@ -12,10 +12,10 @@
 - [Installation](#-installation)
 - [Datasets & Models](#-datasets--models)
 - [Quick Start](#-quick-start)
-  - [World Model Training (Optional)](#optional-world-model-training)
-  - [Offline Inference](#offline-inference)
-  - [Offline Evaluation](#offline-evaluation)
-  - [Online Testing](#online-testing)
+  - [World Model Training (Optional)](#-optional-world-model-training)
+  - [Offline Inference](#-offline-inference)
+  - [Offline Evaluation](#-offline-evaluation)
+  - [Online Testing](#-online-testing)
 - [Citation](#-citation)
 
 ## 📝 Introduction
@@ -25,32 +25,27 @@ Given the current observation and a sequence of actions, StarWM predicts structu
 It is further integrated into a world-model-augmented decision system (**StarWM-Agent**) to enable short-horizon predictive simulation and inference-time policy refinement.
 
 <p align="center">
-  <img src="assets/fig.png" width="800">
+  <img src="assets/fig1.png" width="800">
 </p>
 
 To address dynamics modeling and decision integration in this hybrid and partially observable environment, we:
 
-1. Introduce a **structured textual observation representation** that factorizes SC2 dynamics into five semantic modules:
-  - Info (economy & status)
-  - Queue (production & research)
-  - My Units
-  - My Structures
-  - Visible Hostiles
+1. Introduce a **structured textual observation representation** that factorizes SC2 dynamics into five semantic modules
 2. Construct **SC2-Dynamics-50K**, the first instruction-tuning dataset for SC2 dynamics prediction, and train StarWM via supervised fine-tuning on Qwen3-8B
 3. Develop a **multi-dimensional offline evaluation framework** that measures world model quality across Economy, Development, Micro-Entity, Macro-Situation
 4. Propose **StarWM-Agent**, a Generate–Simulate–Refine decision system for inference-time policy refinement
 
-### 🚀 Offline Evaluation Results
+### 🕹️ Offline Evaluation Results
 
 <p align="center">
-  <img src="assets/fig.png" width="800">
+  <img src="assets/fig2.png" width="800">
 </p>
 
 - 🟢 **60% reduction** in minerals prediction error (SMAPE)
 - 🟢 **60% improvement** in self-side macro-situation consistency (AWD)
 - 🟢 Significant gains in task progress prediction and unit attributes modeling
 
-### 🧠 StarWM-Agent: Generate–Simulate–Refine
+### 🎯 StarWM-Agent: Generate–Simulate–Refine
 
 StarWM-Agent augments an LLM policy with short-horizon predictive simulation:
 
@@ -60,18 +55,18 @@ StarWM-Agent augments an LLM policy with short-horizon predictive simulation:
 
 This enables:
 - Preemptive macro-management (including Supply bottleneck anticipation)
-- Lightweight combat feasibility checking
+- Lightweight combat feasibility assessment
 
-#### 🚀 Online Decision-Making Performance
+### 🕹️ Online Decision-Making Performance
 
 <p align="center">
   <img src="assets/fig3.png" width="800">
 </p>
 
-- +30% / +15% / +30% win-rate gains against SC2's Hard / Harder / VeryHard built-in AI
-- Significant reduction in supply block rate
-- Higher resource conversion rate
-- Improved kill-loss ratio
+- 🟢 +30% / +15% / +30% win-rate gains against SC2's Hard / Harder / VeryHard built-in AI
+- 🟢 Significant reduction in supply block rate
+- 🟢 Higher resource conversion rate
+- 🟢 Improved kill-loss ratio
 
 ## 🛠️ Installation
 
@@ -91,7 +86,7 @@ pip install -r requirements.txt
 
 ## 📊 Datasets & Models
 
-Download the `SC2-Dynamics-50K` dataset and `StarWM` from Hugging Face:
+Download the `SC2-Dynamics-50K` dataset from Hugging Face:
 
 ```bash
 hf download --repo-type dataset yxzhang2024/SC2-Dynamics-50K --local-dir ./data/
@@ -102,7 +97,7 @@ The dataset contains:
 - `wm_val_horizon5.json`
 - `wm_test_horizon5.json`
 
-Download the StarWM model from Hugging Face:
+Download the `StarWM` model from Hugging Face:
 
 ```bash
 hf download yxzhang2024/StarWM --local-dir path/to/your/local/dir
@@ -112,7 +107,7 @@ You can deploy this model using vLLM for inference.
 
 
 ## 🚀 Quick Start
-### (Optional) World Model Training
+### 🤖 (Optional) World Model Training
 
 If you don't download the StarWM model and want to train from scratch, we provide a tutorial here, using [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) for training.
 
@@ -163,7 +158,7 @@ llamafactory-cli export examples/merge_lora/qwen3_lora_sft.yaml
 
 Then deploy this model using vLLM for inference.
 
-### Offline Inference
+### 🔮 Offline Inference
 
 Inference scripts are located in `offline_infer/`.
 
@@ -171,7 +166,7 @@ Inference scripts are located in `offline_infer/`.
 2. Edit `offline_infer/run_experiment_wm.sh` to set:
    - `API_BASE`: Your vLLM server address (e.g., `http://localhost:8000/v1`)
    - `API_KEY`: Your API key (if any, else `EMPTY`)
-   - `MODEL_PATH`: The model name served by vLLM
+   - `MODEL_NAME`: The model name served by vLLM
 
 Run the inference:
 
@@ -180,7 +175,7 @@ Run the inference:
 bash offline_infer/run_experiment_wm.sh
 ```
 
-### Offline Evaluation
+### 🧾 Offline Evaluation
 
 Evaluation scripts are in `offline_evaluate/`.
 
@@ -217,7 +212,7 @@ python offline_evaluate/run_eval.py \
     --output_dir offline_evaluate/starwm_results
 ```
 
-### Online Testing
+### 🎮 Online Testing
 
 The online testing component is built on the SC2Arena platform. As the SC2Arena codebase has not yet been publicly released, we are currently seeking permission from the SC2Arena authors for open-sourcing the related code and will release it once approval is granted.
 

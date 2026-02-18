@@ -11,21 +11,20 @@ CLIENT_SCRIPT="offline_infer/run_inference_client.py"
 
 API_BASE="path/to/your/api/base"
 API_KEY="path/to/your/api/key"
-MODEL_NAME="WM-final"
-MODEL_PATH="path/to/your/StarWM/model"
+MODEL_NAME="your/vllm/deploy/model/name"
 
 echo "========================================================"
-echo "Starting Experiment for Model: $MODEL_NAME at $MODEL_PATH"
+echo "Starting Experiment for Model: WM at $MODEL_NAME"
 echo "========================================================"
 
 echo "Running Inference: Mode = NOTHINK"
 python "$CLIENT_SCRIPT" \
     --input_file "$TEST_FILE" \
-    --output_file "$OUTPUT_DIR/${MODEL_NAME}_nothink_results.jsonl" \
+    --output_file "$OUTPUT_DIR/WM-final_nothink_results.jsonl" \
     --mode "nothink" \
     --api_base "$API_BASE" \
     --api_key "$API_KEY" \
-    --model_id "$MODEL_PATH" \
+    --model_id "$MODEL_NAME" \
     --max_workers 100
 
 echo "All experiments completed."
