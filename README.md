@@ -1,23 +1,17 @@
 # World Models for Policy Refinement in StarCraft II
 
 <p align="center">
-  <a href="https://arxiv.org/abs/2602.14857">
-    <img src="https://img.shields.io/badge/arXiv-2602.14857-b31b1b?logo=arxiv">
-  </a>
-  <a href="https://huggingface.co/yxzhang2024/StarWM">
-    <img src="https://img.shields.io/badge/Model-StarWM-FFD21E?logo=huggingface">
-  </a>
-  <a href="https://huggingface.co/datasets/yxzhang2024/SC2-Dynamics-50K">
-    <img src="https://img.shields.io/badge/Dataset-SC2--Dynamics--50K-FFD21E?logo=huggingface">
-  </a>
+  <a href="https://arxiv.org/abs/2602.14857"><img src="https://img.shields.io/badge/arXiv-2602.14857-b31b1b?logo=arxiv"></a>
+  <a href="https://huggingface.co/yxzhang2024/StarWM"><img src="https://img.shields.io/badge/Model-StarWM-FFD21E?logo=huggingface"></a>
+  <a href="https://huggingface.co/datasets/yxzhang2024/SC2-Dynamics-50K"><img src="https://img.shields.io/badge/Dataset-SC2--Dynamics--50K-FFD21E?logo=huggingface"></a>
 </p>
 
-> This repository is the official implementation of **[World Models for Policy Refinement in StarCraft II](https://arxiv.org/abs/2602.14857)**.
+> This repository is the official implementation of the paper: **[World Models for Policy Refinement in StarCraft II](https://arxiv.org/abs/2602.14857)**.
 
 ## 🔥 News
 
-- **2026-08-26:** The **camera-ready version** of our paper is now available on [arXiv](https://arxiv.org/abs/2602.14857).
-- **2026-08-21:** Our paper was accepted to **EMNLP 2026 Main Conference**! 🎉
+- **2026-08-26:** The **revised version** of our paper is now available on [arXiv](https://arxiv.org/abs/2602.14857).
+- **2026-08-21:** Our paper has been accepted by **EMNLP 2026** as a **main conference paper**! 🎉
 
 ## 🌍 Overview
 
