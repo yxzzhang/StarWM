@@ -1,72 +1,89 @@
 # World Models for Policy Refinement in StarCraft II
 
 <p align="center">
-  📄 <a href="https://arxiv.org/abs/2602.14857">Paper (arXiv)</a> • 🤗 <a href="https://huggingface.co/yxzhang2024/StarWM">StarWM Model</a> • 📂 <a href="https://huggingface.co/datasets/yxzhang2024/SC2-Dynamics-50K">SC2-Dynamics-50K Dataset</a>
+  <a href="https://arxiv.org/abs/2602.14857">
+    <img src="https://img.shields.io/badge/arXiv-2602.14857-b31b1b?logo=arxiv">
+  </a>
+  <a href="https://huggingface.co/yxzhang2024/StarWM">
+    <img src="https://img.shields.io/badge/Model-StarWM-FFD21E?logo=huggingface">
+  </a>
+  <a href="https://huggingface.co/datasets/yxzhang2024/SC2-Dynamics-50K">
+    <img src="https://img.shields.io/badge/Dataset-SC2--Dynamics--50K-FFD21E?logo=huggingface">
+  </a>
 </p>
 
-> This repository contains the official implementation of the paper **World Models for Policy Refinement in StarCraft II**.
+> This repository is the official implementation of **[World Models for Policy Refinement in StarCraft II](https://arxiv.org/abs/2602.14857)**.
 
-## 📖 Table of Contents
+## 🔥 News
 
-- [Introduction](#-introduction)
-- [Installation](#-installation)
-- [Datasets & Models](#-datasets--models)
-- [Quick Start](#-quick-start)
-  - [World Model Training (Optional)](#-optional-world-model-training)
-  - [Offline Inference](#-offline-inference)
-  - [Offline Evaluation](#-offline-evaluation)
-  - [Online Testing](#-online-testing)
-- [Citation](#-citation)
+- **2026-08-26:** The **camera-ready version** of our paper is now available on [arXiv](https://arxiv.org/abs/2602.14857).
+- **2026-08-21:** Our paper was accepted to **EMNLP 2026 Main Conference**! 🎉
 
-## 📝 Introduction
+## 🌍 Overview
 
-We propose **StarWM**, the first action-conditioned world model for StarCraft II. 
-Given the current observation and a sequence of actions, StarWM predicts structured future observations under partial observability. 
-It is further integrated into a world-model-augmented decision system (**StarWM-Agent**) to enable short-horizon predictive simulation and inference-time policy refinement.
+We study world models for complex partially observable competitive environments, using StarCraft II (SC2) as a challenging testbed.
+
+We propose StarWM, a player-view, action-conditioned world model for SC2, and StarWM-Agent, a world-model-augmented decision system for inference-time policy improvement. 
+
+We conduct extensive offline and online experiments to study the **learnability** and **decision utility** of StarWM, while also characterizing the **boundaries** of the current formulation.
+
+Specifically, we:
+
+1. First introduce a **structured textual representation** that factorizes SC2 observations into five semantic modules based on distinct evolution mechanisms in SC2.
+2. Then construct **SC2-Dynamics-50K**, a trajectory-based instruction-tuning dataset for SC2 dynamics prediction, and train StarWM via supervised fine-tuning on Qwen3-8B.
+3. Develop a **multi-dimensional evaluation framework** tailored to SC2's hybrid dynamics, and conduct offline experiments to evaluate world-model prediction across economy, development, micro-entity, and macro-situation.
+4. Develop **StarWM-Agent**, which integrates StarWM into a lightweight Generate–Simulate–Refine loop for foresight-driven policy refinement, and conduct online experiments to evaluate the decision utility of the learned world model.
 
 <p align="center">
   <img src="assets/fig1.png" width="800">
 </p>
 
-To address dynamics modeling and decision integration in this hybrid and partially observable environment, we:
+## 🎯 Key Results
+### 1. Learnability of SC2 Dynamics
 
-1. Introduce a **structured textual observation representation** that factorizes SC2 dynamics into five semantic modules
-2. Construct **SC2-Dynamics-50K**, the first instruction-tuning dataset for SC2 dynamics prediction, and train StarWM via supervised fine-tuning on Qwen3-8B
-3. Develop a **multi-dimensional offline evaluation framework** that measures world model quality across Economy, Development, Micro-Entity, Macro-Situation
-4. Propose **StarWM-Agent**, a Generate–Simulate–Refine decision system for inference-time policy refinement
+> **RQ1: Can a trajectory-trained, action-conditioned world model capture the hybrid dynamics of SC2?**
 
-### 🕹️ Offline Evaluation Results
+StarWM substantially outperforms zero-shot LLM baselines across multiple dimensions, including economy, development, micro-entity, and self-side macro-situation. Meanwhile, the learned dynamics also generalize to an unseen map and a held-out opponent without retraining.
 
 <p align="center">
-  <img src="assets/fig2.png" width="800">
+  <img src="assets/fig2.png" width="95%"><br>
+  <em>Table 1: Offline evaluation results in the main setting.</em>
 </p>
 
-- 🟢 **60% reduction** in minerals prediction error (SMAPE)
-- 🟢 **60% improvement** in self-side macro-situation consistency (AWD)
-- 🟢 Significant gains in task progress prediction and unit attributes modeling
+### 2. Decision Utility of StarWM
 
-### 🎯 StarWM-Agent: Generate–Simulate–Refine
+> **RQ2: Does integrating a learned world model into the decision loop improve overall decision-making performance?**
 
-StarWM-Agent augments an LLM policy with short-horizon predictive simulation:
+StarWM-Agent achieves consistent win-rate gains of +30%, +15%, and +30% against the SC2 built-in AI at Hard (LV5), Harder (LV6), and VeryHard (LV7), respectively, while also improving macro-management and micro-tactical metrics.
 
-1. **Generate** initial actions
-2. **Simulate** predicted future using StarWM
-3. **Refine** actions conditioned on predicted future
-
-This enables:
-- Preemptive macro-management (including Supply bottleneck anticipation)
-- Lightweight combat feasibility assessment
-
-### 🕹️ Online Decision-Making Performance
+Ablation studies further show that StarWM provides additional gains beyond policy self-refinement and zero-shot world-model simulation, highlighting the benefit of more accurate action-conditioned simulation for policy improvement. Moreover, we find that world-model simulation is complementary to existing history-summarization methods, with their combination achieving the strongest online performance in our evaluation.
 
 <p align="center">
-  <img src="assets/fig3.png" width="800">
+  <img src="assets/fig3.png" width="95%"><br>
+  <em>Table 2: Online evaluation results in the main setting.</em>
 </p>
 
-- 🟢 +30% / +15% / +30% win-rate gains against SC2's Hard / Harder / VeryHard built-in AI
-- 🟢 Significant reduction in supply block rate
-- 🟢 Higher resource conversion rate
-- 🟢 Improved kill-loss ratio
+### 3. Current Boundaries
+
+Our analyses also shed light on the current boundaries of the formulation and point to two promising directions for future work:
+
+1. Modeling under partial observability: Single-frame prediction is inherently challenging under Fog of War, especially for enemy-side dynamics. We find that incorporating temporal history substantially improves prediction, suggesting that stronger temporal memory and belief-state modeling may further improve prediction under partial observability.
+2. Longer prediction horizons: We find that prediction at longer horizons does not completely collapse but becomes considerably more difficult, suggesting the need for multi-scale prediction or temporal abstraction for more reliable long-horizon prediction.
+
+Overall, we believe this work provides useful insights for the community and motivates future research on world models for complex partially observable competitive environments.
+
+## 📑 Table of Contents
+
+- [Overview](#-overview)
+- [Key Results](#-key-results)
+- [Installation](#️-installation)
+- [Datasets & Models](#-datasets--models)
+- [Quick Start](#-quick-start)
+  - [(Optional) World Model Training](#-optional-world-model-training)
+  - [Offline Inference](#-offline-inference)
+  - [Offline Evaluation](#-offline-evaluation)
+  - [Online Testing](#-online-testing)
+- [Citation](#-citation)
 
 ## 🛠️ Installation
 
@@ -84,7 +101,7 @@ conda activate StarWM
 pip install -r requirements.txt
 ```
 
-## 📊 Datasets & Models
+## 📥 Datasets & Models
 
 Download the `SC2-Dynamics-50K` dataset from Hugging Face:
 
@@ -109,7 +126,7 @@ You can deploy this model using vLLM for inference.
 ## 🚀 Quick Start
 ### 🤖 (Optional) World Model Training
 
-If you don't download the StarWM model and want to train from scratch, we provide a tutorial here, using [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) for training.
+If you prefer to train StarWM yourself instead of downloading the released model, we provide instructions below using [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) for training.
 
 You need to copy the `SC2-Dynamics-50K` dataset to the LLaMA-Factory data directory.
 
@@ -189,9 +206,9 @@ bash offline_evaluate/run_eval.sh
 
 #### Paper Replication
 
-To replicate the results from the paper (Figure 3-5, Table 1, Table 4), you can use the specific commands provided below.
+To replicate the results from the paper (Figures 3–5, Tables 1 and 4), you can use the specific commands provided below.
 
-**Reproduce Figure 3-5 (Offline Evolution of AWD & Case Study):**
+**Reproduce Figures 3–5 (Offline Evolution of AWD & Case Study):**
 ```bash
 python offline_evaluate/run_eval.py \
     --wm_file offline_infer/starwm_output_1traj/WM-final_nothink_results.jsonl \
@@ -202,7 +219,7 @@ python offline_evaluate/run_eval.py \
     --figure2_frames 384 365
 ```
 
-**Reproduce Table 1,4 (Offline evaluation results):**
+**Reproduce Tables 1 and 4 (Offline evaluation results):**
 ```bash
 python offline_evaluate/run_eval.py \
     --wm_file offline_infer/starwm_output/WM-final_nothink_results.jsonl \
